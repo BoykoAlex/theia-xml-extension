@@ -21,6 +21,7 @@ import { join, resolve } from 'path';
 import * as path from 'path';
 import { FileUri } from '@theia/core/lib/node';
 import URI from '@theia/core/lib/common/uri';
+import { ProcessErrorEvent } from '@theia/process/lib/node/process';
 
 const JAR_PATH = FileUri.fsPath(new URI(resolve(join(__dirname, '..', '..', 'lsp4xml', 'org.eclipse.lsp4xml-all.jar'))))
 
@@ -53,7 +54,7 @@ export class XMLContribution extends BaseLanguageServerContribution {
         }
     }
 
-    protected onDidFailSpawnProcess(error: Error): void {
+    protected onDidFailSpawnProcess(error: ProcessErrorEvent): void {
         super.onDidFailSpawnProcess(error);
         console.error("Error starting xml language server.");
     }
